@@ -5,3 +5,6 @@
 /server/DArticle/obj
 /server/WebAPI/bin
 /server/WebAPI/obj
+
+/client/node_modules
+/client/.vscode
