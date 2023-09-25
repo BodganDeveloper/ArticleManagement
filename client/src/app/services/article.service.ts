@@ -28,9 +28,9 @@ export class ArticleService {
       .post<Article>(`${url}`, article);
   }
 
-  update(id: string, description: string): Observable<Article> {
+  update(id: string, title: string, content: string): Observable<Article> {
     return this.http
-      .put<Article>(`${url}/${id}`, {description});
+      .put<Article>(`${url}/${id}`, {title, content});
   }
 
   delete(id: string): Observable<Article> {

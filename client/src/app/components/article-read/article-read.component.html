@@ -1,15 +1,12 @@
-<div *ngIf="article">
+<div *ngIf="loading">Loading...</div>
+
+<div *ngIf="!loading && !article">
+  <h1>Article not found!</h1>
+</div>
+
+<div *ngIf="!loading && article">
   <div>
     <h1>{{article.title}}</h1>  
-    <!-- <span>{{article.createdAt.toLocaleString('en-US', { 
-      year: 'numeric', 
-      month: 'long', 
-      day: 'numeric', 
-      hour: 'numeric', 
-      minute: 'numeric', 
-      second: 'numeric' 
-    })}}</span> -->
   </div>
   <p>{{article.content}}</p>  
 </div>
-<div *ngIf="!article">Loading...</div>

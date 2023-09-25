@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 import { ArticleService } from '../../services/article.service';
 import { Article } from '../../shared/types/article';
@@ -12,11 +12,11 @@ import { Article } from '../../shared/types/article';
 export class ArticleReadComponent {
   article!: Article;
   id!: string;
+  loading: boolean = true;
 
   constructor(
     private readonly articleService: ArticleService,
-    private route: ActivatedRoute,
-    private router: Router
+    private route: ActivatedRoute
   ) {}
   
   ngOnInit(): void {
@@ -25,10 +25,11 @@ export class ArticleReadComponent {
     this.articleService.getById(this.id)
     .subscribe({
       next: (data) => {
+        this.loading = false;
         this.article = data;
       },
       error: (err) => {
-        this.router.navigateByUrl('');
+        this.loading = false;
       },
     })
   }

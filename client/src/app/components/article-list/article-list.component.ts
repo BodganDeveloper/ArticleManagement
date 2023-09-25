@@ -16,6 +16,10 @@ export class ArticleListComponent implements OnInit{
   ) {}
   
   ngOnInit(): void {
+    this.loadData();
+  }
+  
+  loadData(): void{
     this.articleService.getAll()
     .subscribe(data => {
       this.articles = data;

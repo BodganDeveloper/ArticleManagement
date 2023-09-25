@@ -3,6 +3,7 @@
     <h5 class="card-title">{{article.title}}</h5>
     <p class="card-text">{{article.content}}</p>
     <a [routerLink]="'/' + article.id" class="btn btn-primary">View more</a>
+    <a [routerLink]="'/' + article.id + '/edit'" class="btn btn-secondary ms-3">Update</a>
     <button class="btn btn-danger ms-3" (click)="onDelete(article.id)">Delete</button>
   </div>
 </div>
