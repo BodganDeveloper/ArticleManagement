@@ -14,4 +14,4 @@ RUN dotnet dev-certs https --verbose
 RUN dotnet publish -c Release
 
 EXPOSE 5000
-ENTRYPOINT ["dotnet", "/app/WebApi/bin/Release/net6.0/WebApi.dll"]
+ENTRYPOINT ["dotnet", "/app/WebAPI/bin/Release/net6.0/WebAPI.dll"]
