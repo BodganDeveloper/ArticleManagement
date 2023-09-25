@@ -1,11 +1,27 @@
+using DArticle.ApplicationLayer.Articles;
+using DArticle.InfrastructureLayer;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+ArticleRepository repository = new ArticleRepository();
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddScoped<IArticleService, ArticleService>(f => new ArticleService(repository));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("Origins", policy =>
+    {
+        policy.AllowAnyOrigin()
+        .AllowAnyHeader()
+        .AllowAnyMethod();
+    });
+});
 
 var app = builder.Build();
 
@@ -16,7 +32,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+app.UseCors("Origins");
 
 app.UseAuthorization();
 
