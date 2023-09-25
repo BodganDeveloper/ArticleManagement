@@ -49,7 +49,6 @@ public class ArticleController : ControllerBase
 
       if (result.IsValid)
       {
-
         Article newArticle = articleService.Add(Article.Create(article.title, article.content));
         return Ok(newArticle);
       }
@@ -57,6 +56,44 @@ public class ArticleController : ControllerBase
       {
         return StatusCode(422, result.Errors);
       }
+    }
+    catch
+    {
+      return StatusCode(500);
+    }
+  }
+
+  [HttpPut("{id}")]
+  public ActionResult<Article> Update(Guid id, [FromBody] ArticleAggregate article)
+  {
+    try
+    {
+      ArticleValidator validator = new ArticleValidator();
+
+      ValidationResult result = validator.Validate(article);
+
+      if (result.IsValid)
+      {
+        Article newArticle = articleService.Update(id, article.title, article.content);
+        return Ok(newArticle);
+      }
+      else
+      {
+        return StatusCode(422, result.Errors);
+      }
+    }
+    catch
+    {
+      return StatusCode(500);
+    }
+  }
+
+  [HttpDelete("{id}")]
+  public ActionResult<Article> Delete(Guid id)
+  {
+    try
+    {
+      return Ok(articleService.Remove(id));
     }
     catch
     {
