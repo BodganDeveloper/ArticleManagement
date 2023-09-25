@@ -1,0 +1,7 @@
+.vscode
+
+/server/.vscode
+/server/DArticle/bin
+/server/DArticle/obj
+/server/WebAPI/bin
+/server/WebAPI/obj
