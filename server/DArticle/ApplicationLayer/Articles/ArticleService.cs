@@ -1,55 +1,55 @@
 using AutoMapper;
 using System;
-using DEmployee.Helpers.Repository;
-using DEmployee.DomainModelLayer.Employees;
-using DEmployee.InfrastructureLayer;
+using DArticle.Helpers.Repository;
+using DArticle.DomainModelLayer.Articles;
+using DArticle.InfrastructureLayer;
 
-namespace DEmployee.ApplicationLayer.Employees
+namespace DArticle.ApplicationLayer.Articles
 {
-    public class EmployeeService : IEmployeeService
+    public class ArticleService : IArticleService
     {
-        IEmployeeRepository employeeRepository;
-        public EmployeeService(IEmployeeRepository employeeRepository)
+        IArticleRepository articleRepository;
+        public ArticleService(IArticleRepository articleRepository)
         {
-            this.employeeRepository = employeeRepository;
+            this.articleRepository = articleRepository;
         }
-        public Employee Add(Employee employeeDto)
+        public Article Add(Article articleDto)
         {
-            Employee employee = Employee.Create(employeeDto.Name, employeeDto.Birthday, employeeDto.Description, employeeDto.Gender);
-            this.employeeRepository.Add(employee);
+            Article article = Article.Create(articleDto.title, articleDto.content);
+            this.articleRepository.Add(article);
 
-            return employee;
-        }
-
-        public Employee Remove(Guid employeeId)
-        {
-
-            Employee employee = this.employeeRepository.FindById(employeeId);
-
-            this.employeeRepository.Remove(employee);
-
-            return employee;
+            return article;
         }
 
-        public Employee Get(Guid employeeId)
+        public Article Remove(Guid articleId)
         {
-            Employee employee = this.employeeRepository.FindById(employeeId);
 
-            return employee;
+            Article article = this.articleRepository.FindById(articleId);
+
+            this.articleRepository.Remove(article);
+
+            return article;
         }
 
-        public IEnumerable<Employee> GetAll()
+        public Article Get(Guid articleId)
         {
-            return this.employeeRepository.GetAll();
+            Article article = this.articleRepository.FindById(articleId);
+
+            return article;
         }
-        public Employee Update(Guid id, string description)
+
+        public IEnumerable<Article> GetAll()
+        {
+            return this.articleRepository.GetAll();
+        }
+        public Article Update(Guid id, string title, string content)
         {
 
-            Employee employee = this.employeeRepository.FindById(id);
+            Article article = this.articleRepository.FindById(id);
 
-            employee.SetDescription(description);
+            article.Update(title, content);
 
-            return employee;
+            return article;
         }
     }
 }
