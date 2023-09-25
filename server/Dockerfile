@@ -4,7 +4,7 @@ WORKDIR /article-crud
 
 COPY . .
 
-WORKDIR ./WebApi
+WORKDIR ./WebAPI
 
 ENV DOTNET_URLS=http://+:5000
 
