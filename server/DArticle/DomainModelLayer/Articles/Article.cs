@@ -7,5 +7,6 @@ namespace DArticle.DomainModelLayer.Articles
 {
     public class Article : IAggregateRoot
     {
+        Guid Id { get; }
     }
 }
