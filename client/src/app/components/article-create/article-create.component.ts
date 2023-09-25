@@ -6,7 +6,7 @@ import { ArticleService } from '../../services/article.service';
 import { ArticleValidator } from '../../shared/validators/articleValidator';
 
 @Component({
-  selector: 'app-article-create',
+  selector: 'article-create',
   templateUrl: './article-create.component.html',
   styleUrls: ['./article-create.component.css']
 })
