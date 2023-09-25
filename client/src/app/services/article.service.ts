@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { Article } from '../shared/article';
+import { Article } from '../shared/types/article';
 import { config } from '../shared/config';
 
 const url = `${config.apiUrl}/article`;
