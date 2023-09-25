@@ -15,7 +15,7 @@ namespace DArticle.ApplicationLayer.Articles
         }
         public Article Add(Article articleDto)
         {
-            Article article = Article.Create(articleDto.title, articleDto.content);
+            Article article = Article.Create(articleDto.Title, articleDto.Content);
             this.articleRepository.Add(article);
 
             return article;
