@@ -37,4 +37,30 @@ public class ArticleController : ControllerBase
       return StatusCode(500);
     }
   }
+
+  [HttpPost]
+  public ActionResult<Article> Add([FromBody] ArticleAggregate article)
+  {
+    try
+    {
+      ArticleValidator validator = new ArticleValidator();
+
+      ValidationResult result = validator.Validate(article);
+
+      if (result.IsValid)
+      {
+
+        Article newArticle = articleService.Add(Article.Create(article.title, article.content));
+        return Ok(newArticle);
+      }
+      else
+      {
+        return StatusCode(422, result.Errors);
+      }
+    }
+    catch
+    {
+      return StatusCode(500);
+    }
+  }
 }
