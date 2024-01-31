@@ -7,8 +7,9 @@ using WebApi.Types;
 
 namespace WebApi.Controllers;
 
-[ApiController]
+
 [Route("api/[controller]")]
+[ApiController]
 public class ArticleController : ControllerBase
 {
   private readonly IArticleService articleService;
